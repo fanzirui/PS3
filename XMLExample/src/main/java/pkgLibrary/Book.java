@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 public class Book {
-
+	private double Cost;
 	private String id;
 	private String author;
 	private String title;
@@ -16,13 +16,20 @@ public class Book {
 	private Date publish_date;
 	private String description;
 
+	// constuctor I created 
+	public Book(String id){
+		this(id,"","","", 0, new Date(), "", 0);
+		this.id=id;
+	}
+	
 	public Book() {
 
 	}
 
-	public Book(String id, String author, String title, String genre, double price, Date publish_date, String description)
+	public Book(String id, String author, String title, String genre, double price, Date publish_date, String description,double Cost)
 	{
 		super();
+		this.Cost=Cost;
 		this.id = id;
 		this.author = author;
 		this.title = title;
@@ -32,7 +39,9 @@ public class Book {
 		this.description = description;
 	}
 	
- 
+
+	
+	
 
 	public String getId() {
 		return id;
@@ -96,8 +105,17 @@ public class Book {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public double getCost() {
+		return Cost;
+	}
+	
+	@XmlElement
+	public void setCost(double Cost) {
+		this.Cost = Cost;
+	}
 
-	
-	
+
+
 
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.xml.bind.annotation.*;
 
+import pkgMain.BookException;
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -33,13 +35,35 @@ public class Catalog {
 		this.books = books;
 	}
 	
+	public  Book GetBook( String bookID) throws BookException {
+		Book B = null;
+		for(Book b: books){
+			if (b.getId().equals(bookID)){
+				B=b;
+				break;
+			}
+		}
+		
+		if(B==null){
+			throw new BookException(bookID);
+		}
+		return B;
 
-	
-	
+		
+	}
 
 
-	
-	
+	public void AddBook( String bookID) throws BookException {
+		
+		for(Book b: books){
+			if (b.getId().equals(bookID)){
+				throw new BookException(bookID);
+			}
+		
+		}
+		books.add(new Book(bookID));
+
+	}
 	
 	
 }
